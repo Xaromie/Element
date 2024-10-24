@@ -1,0 +1,3310 @@
+
+@font-face {
+    font-family: "SF Pro Display Bold";
+    src: url("Fonts/SF Pro Display Bold.otf") format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "SF Pro Display Medium";
+    src: url("Fonts/SF Pro Display Medium.otf") format("opentype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+:root {
+    --BODY_COLOR: rgb(240 240 240);
+    --AIR_COLOR: rgb(255 255 255 / 90%);
+    --AIR_SHADOW: 0px 3px 10px -3px rgb(114 114 114 / 50%);
+
+    --BLOCK_COLOR: rgb(254 254 254);
+    --BLOCK_COLOR_LITE: rgb(254 254 254 / 70%);
+
+    --BTN_BACKGROUND: rgb(242 242 242);
+    --BTN_COLOR: rgb(124 125 136);
+    --BTN_CLOSE_COLOR: rgb(255 193 193 / 70%);
+
+    --GRADIENT: linear-gradient(345deg, #b159b8, #8386d5);
+    --GRADIENT_SHADOW: 0px 0px 9px -1px rgb(154 112 199 / 67%);
+    --NL_GRADIENT: linear-gradient(33deg, rgb(175 175 175), rgb(208 208 208));
+    --GOLD_GRADIENT: linear-gradient(465deg, #fab31e, #fd9347);
+
+    --TITLE_COLOR: rgb(105 106 108);
+    --TEXT_COLOR: rgb(121 121 121);
+
+    --FS_TITLE: 1.08em;
+    --FS_TEXT: 0.92em;
+    --FS_NAME: 1em;
+    --FS_D_OR_P: 0.8em;
+
+    --FF_TITLE: SF Pro Display Bold;
+
+    --C_TOP_MARGIN: 80px;
+    --BR_BASE: 10px/9px;
+    --AIR_BLUR: saturate(200%) blur(20px);
+    --D_OR_P_COLOR: rgb(154 154 154);
+}
+
+body {
+    background: var(--BODY_COLOR);
+    color: var(--TEXT_COLOR);
+    font-family: SF Pro Display Medium;
+    font-size: var(--FS_TEXT);
+    letter-spacing: 0.019em;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+    transition: .4s;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+input:not([type="checkbox"]),
+textarea,
+select,
+button {
+    font-size: var(--FS_TEXT);
+    font-family: inherit;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type="radio"] {
+    -webkit-appearance: radio;
+    -moz-appearance: radio;
+    appearance: radio;
+    width: auto;
+    max-width: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+button:active {
+    filter: brightness(0.8);
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Дебаг меню */
+
+.DebugInfo {
+    background: var(--AIR_COLOR);
+    backdrop-filter: var(--AIR_BLUR);
+    -webkit-backdrop-filter: var(--AIR_BLUR);
+    backdrop-filter: blur(20px);
+    border-radius: var(--BR_BASE);
+    padding: 10px;
+    margin-left: 20px;
+    width: fit-content;
+    max-width: 340px;
+    position: fixed;
+    z-index: 3;
+    display: none;
+    flex-direction: column;
+    white-space: break-spaces;
+    -webkit-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+    -moz-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+    box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+}
+
+.DebugInfo-Title {
+    font-size: var(--FS_TITLE);
+    margin: 10px 0px;
+}
+
+/* Глобально */
+
+.UI-Blur {
+    background: rgb(119 119 119 / 50%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: 0; 
+    visibility: hidden;
+}
+
+.Avatar {
+    background: var(--NL_GRADIENT);
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    line-height: 0;
+}
+.Avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.Avatar .UI-PRELOAD {
+    width: 100%;
+    height: 100%;
+}
+
+.NonAvatar {
+    color: #ffffff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0px 0px 3px #3a3a3a52;
+}
+
+#Posts {
+    margin-bottom: 20px;
+}
+
+/* Интерфейс */
+
+.UI-TopBar {
+    background: var(--AIR_COLOR);
+    backdrop-filter: var(--AIR_BLUR);
+    -webkit-backdrop-filter: var(--AIR_BLUR);
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    -webkit-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 50%);
+    -moz-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 50%);
+    box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 50%);
+}
+
+.UI-N_DIV {
+    width: 100%;
+    max-width: 990px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .Avatar {
+        width: 40px;
+        height: 40px;
+        margin: 0px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .Avatar:active, .Logo:active {
+        filter: brightness(0.8);
+    }
+}
+
+.UI-N_L_AND_N {
+    color: var(--TEXT_COLOR);
+    font-size: 20px;
+    width: 100%;
+    max-width: 850px;
+    display: flex;
+    align-items: center;
+}
+.UI-N_L_AND_N .UI-Logo {
+    margin-right: 10px;
+}
+
+/* Интерфейс - Логотип */
+
+.UI-Logo {
+    width: 40px;
+    height: 40px;
+    margin: 0px;
+    position: relative;
+    cursor: pointer;
+    background-image: url("/System/Images/Logo.svg");
+    background-size: cover;
+}
+
+/* .UI-Logo::after {
+    content: 'Бета';
+    color: #FFF;
+    font-size: 18px;
+    position: absolute;
+    bottom: 0;
+    left: -5px;
+    text-shadow: 0px 0px 4px rgb(0 0 0 / 81%);
+}  */
+
+.UI-Logo:active {
+    filter: brightness(0.8);
+}
+
+.Content {
+    width: 100%;
+    max-width: 1080px;
+    height: 100%;
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.UI-L_NAV {
+    width: 100%;
+    max-width: 200px;
+}
+.UI-LN_Button {
+    background: var(--BLOCK_COLOR_LITE);
+    color: var(--TEXT_COLOR);
+    font-size: var(--FS_TEXT);
+    width: 100%;
+    height: 35px;
+    border-radius: var(--BR_BASE);
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: .2s;
+
+    .GoldText {
+        background-image: var(--GOLD_GRADIENT);
+        -webkit-background-clip: text;
+        color: transparent;
+        display: flex;
+        align-items: center;
+    }
+    .GoldText .icon-Nav_Sub::before {
+        background-image: var(--GOLD_GRADIENT);
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+}
+.UI-LN_Button i {
+    width: 21px;
+    font-size: 20px;
+    margin-right: 7px;
+    position: relative;
+}
+.UI-LNB_ACT {
+    background: var(--BLOCK_COLOR);
+    box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 50%);
+}
+
+.UI-PAGE_BODY {
+    width: 100%;
+    padding: 0px 10px;
+    position: relative;
+    display: flex;
+}
+.UI-PAGE_SCROLL {
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+.UI-PB_PRELOAD {
+    background: linear-gradient(114deg, rgb(254 254 254), rgb(254 254 254));
+    z-index: 5;
+    opacity: 1;
+    margin: 80px 10px 0px 10px;
+    border-radius: 10px 10px 0px 0px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+.UI-PB_PRELOAD::before {
+    background: linear-gradient(45deg, rgb(254 254 254), rgb(240 240 240));
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: LOAD_PAGE 2s infinite linear;
+}
+
+.UI-C_L, .UI-C_R {
+    overflow: scroll;
+}
+.UI-C_L {
+    width: 100%;
+    max-width: 500px;
+    margin-right: 5px;
+}
+.UI-C_R {
+    width: 100%;
+    max-width: 350px;
+    margin-left: 3px;
+}
+
+.UI-B_FIRST {
+    margin-top: var(--C_TOP_MARGIN);
+}
+
+.UI-Block {
+    background: var(--BLOCK_COLOR);
+    border-radius: var(--BR_BASE);
+    margin-bottom: 7px;
+    padding: 10px;
+    box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 50%);
+}
+
+.UI-Title {
+    color: var(--TITLE_COLOR);
+    font-family: var(--FF_TITLE);
+    font-size: var(--FS_TITLE);
+    width: fit-content;
+    margin: 8px 0px 12px 5px;
+}
+
+.UI-B_CONTENT {
+    color: var(--TEXT_COLOR);
+    font-size: 0.9em;
+    line-height: 1.3em;
+    margin: 5px;
+}
+
+.UI-Input {
+    background: rgb(225 225 225 / 33%);
+    border: 1px solid rgb(89 93 105 / 10%);
+    color: var(--TEXT_COLOR);
+    font-size: var(--FS_TEXT);
+    border-radius: 8px;
+}
+
+.UI-Input::-webkit-input-placeholder {
+    color: var(--TEXT_COLOR);
+}
+
+.UI-LM_BTN {
+    background: var(--BLOCK_COLOR);
+    color: var(--TEXT_COLOR);
+    border-radius: 100px;
+    padding: 10px 20px;
+    margin: auto;
+    display: block;
+    box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 50%);
+}
+
+.UI-PUSTOTA_W {
+    width: 3px;
+    min-width: 3px;
+}
+
+.UI-PUSTOTA_H {
+    height: 3px;
+    min-height: 3px;
+}
+
+.UI-PRELOAD {
+    background: rgb(208 208 208);
+    border-radius: 100px;
+    position: relative;
+    overflow: hidden;
+}
+.UI-PRELOAD::after {
+    background: rgb(175 175 175);
+    filter: blur(10px);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: TEXT_PRELOAD-ANIM 1s infinite ease-out;
+}
+
+/* Интерфейс - Ошибка */
+
+.UI-Window_BG {
+    background: rgb(23 23 23 / 50%);
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.UI-Window {
+    background: var(--AIR_COLOR);
+    backdrop-filter: var(--AIR_BLUR);
+    -webkit-backdrop-filter: var(--AIR_BLUR);
+    border-radius: 13px;
+    height: fit-content;
+    max-height: 500px;
+    width: 270px;
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 11;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-box-shadow: 0px 3px 14px -3px rgb(64 64 64 / 70%);
+    -moz-box-shadow: 0px 3px 14px -3px rgb(64 64 64 / 70%);
+    box-shadow: 0px 3px 14px -3px rgb(64 64 64 / 70%);
+}
+
+.UI-Window_content {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.UI-Window_title {
+    font-family: var(--FF_TITLE);
+    font-size: var(--FS_TITLE);
+}
+
+.UI-Window_text {
+    color: var(--TEXT_COLOR);
+    font-size: var(--FS_TEXT);
+    margin-top: 15px;
+}
+
+.UI-Window_BTNS {
+    width: 96%;
+    height: 30px;
+    margin: 13px 5px 5px 5px;
+    display: flex;
+}
+
+.UI-Window_BW {
+    width: 15px;
+}
+
+.UI-Window_input {
+    width: 100%;
+    height: 35px;
+    padding: 0px 10px;
+    margin-top: 10px;
+}
+
+.UI-Window_button {
+    background: var(--GRADIENT);
+    color: #FFF;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--BR_BASE);
+    text-align: center;
+    -webkit-box-shadow: var(--GRADIENT_SHADOW);
+    -moz-box-shadow: var(--GRADIENT_SHADOW);
+    box-shadow: var(--GRADIENT_SHADOW);
+}
+
+.UI-Window_BTN_NOACT {
+    background: var(--BODY_COLOR);
+    color: var(--TEXT_COLOR);
+    border: 1px solid rgb(89 93 105 / 10%);
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.UI-E_IMG {
+    filter: contrast(0.2);
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Интерфейс - Кнопка переклюатель */
+
+.UI-Switch {
+    background: rgb(225 225 225 / 33%);
+    border: 1px solid rgb(89 93 105 / 10%);
+    border-radius: 100px;
+    padding: 4px;
+    width: 55px;
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+    transition: .300ms;
+    overflow: hidden;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+}
+.UI-Switch::after {
+    content: "";
+    background: #FFF;
+    border-radius: 100px;
+    height: 20px;
+    width: 20px;
+    margin: auto;
+    transition-duration: 300ms;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transform: translateX(-14px);
+    -webkit-box-shadow: 0px 0px 10px 1px rgb(122 122 122 / 33%);
+    -moz-box-shadow: 0px 0px 10px 1px rgb(122 122 122 / 33%);
+    box-shadow: 0px 0px 10px 1px rgb(122 122 122 / 33%);
+}
+
+.UI-Switch-On {
+    background: var(--GRADIENT);
+    border: 0px solid rgba(255, 255, 255, 0);
+}
+.UI-Switch-On::after {
+    transform: translateX(14px);
+}
+
+/* Интерфейс - Вкладки */
+
+.UI-Tabs {
+    background: var(--BTN_BACKGROUND);
+    border-radius: var(--BR_BASE);
+    width: 100%;
+    height: 37px;
+    padding: 5px;
+    margin-bottom: 7px;
+    display: inline-flex;
+    align-items: center;
+
+    .Tab {
+        background: var(--BTN_BACKGROUND);
+        color: var(--TEXT_COLOR);
+        border-radius: 7px;
+        width: 100%;
+        height: 100%;
+        transition: .2s;
+    }
+
+    .ActiveTab {
+        background: rgb(246 246 246);
+        color: var(--BTN_COLOR);
+        box-shadow: 0px 0px 3px rgb(164 164 164 / 60%);
+    }
+}
+
+/* Интерфейс - Пользователи */
+
+.UI-USR_ICONS {
+    width: fit-content;
+    height: 90%;
+    margin-left: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.UI-USR_ICON {
+    height: 90%;
+    max-height: 90%;
+    min-height: 90%;
+    margin-left: 2px;
+    display: flex;
+}
+
+.UI-USR_ICON svg {
+    fill: var(--TITLE_COLOR);
+    width: 100%;
+    height: 100%;
+}
+
+.UI-USR_ICON img {
+    width: 100%;
+    height: 100%;
+}
+
+/* Интерфейс - Реклама */
+
+.UI-AD_N1-B {
+    background: #382b4f;
+    width: 350px;
+    height: 180px;
+    border-radius: 8px;
+    margin: auto;
+    position: fixed;
+    z-index: 30;
+    left: 0;
+    right: 0;
+    bottom: 100px;
+    overflow: hidden;
+    transform: translateY(200%);
+    opacity: 0;
+    -webkit-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+    -moz-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+    box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+}
+
+.UI-AD_N2-B {
+    background: var(--NL_GRADIENT);
+    border-radius: var(--BR_BASE);
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 7px;
+    -webkit-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+    -moz-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+    box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+}
+
+.UI-AD_C_TOP {
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.UI-AD-T {
+    color: #ffffffe3;
+    text-shadow: #474747 1px 0 10px;
+    margin: 10px;
+    position: absolute;
+    top: 40px;
+}
+
+.UI-AD_C_BOTTOM {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.UI-AD_TITLE {
+    background: var(--AIR_COLOR);
+    backdrop-filter: saturate(200%) blur(10px);
+    -webkit-backdrop-filter: saturate(200%) blur(10px);
+    color: var(--TITLE_COLOR);
+    width: fit-content;
+    border-radius: 4px;
+    padding: 2px 5px;
+    margin: 7px;
+}
+
+.UI-AD_BTN {
+    background: var(--AIR_COLOR);
+    backdrop-filter: saturate(200%) blur(10px);
+    -webkit-backdrop-filter: saturate(200%) blur(10px);
+    color: var(--TITLE_COLOR);
+    width: 100%;
+    margin: 7px;
+    padding: 5px 0;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.UI-AD_BTN:active {
+    filter: brightness(0.8);
+}
+
+.UI-AD_IMG {
+    width: 100%;
+}
+
+/* Регистрация и вход */
+
+.Auth-Body {
+    width: 900px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.Auth-Body .Left, .Right {
+    height: 100%;
+    min-height: 100%;
+    position: relative;
+}
+.Auth-Body .Left {
+    width: 45%;
+    min-width: 45%;
+}
+.Auth-Body .Right {
+    width: 55%;
+    min-width: 55%;
+}
+
+.Auth-Body .LogoAndTitle {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.Auth-Body .LogoAndTitle .Logo {
+    width: 100px;
+    margin-bottom: 20px;
+}
+.Auth-Body .LogoAndTitle .Title {
+    text-align: center;
+    width: 70%;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.Auth-Body .Wathermark {
+    color: rgb(95 95 95 / 50%);
+    font-size: 0.8em;
+    position: absolute;
+    bottom: 0;
+    margin: 5px 10px;
+}
+
+.Auth-Body .LastUsers {
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.Auth-Body .LastUsers .User {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Auth-Body .LastUsers .Avatar {
+    width: 40px;
+    height: 40px;
+}
+.Auth-Body .LastUsers .Name {
+    color: rgb(150 150 150);
+    font-size: 0.8em;
+    width: 50px;
+    margin-top: 5px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.Auth-Body .LastUsers .Name .UI-PRELOAD {
+    width: 40px;
+    height: 15px;
+    margin: auto;
+}
+
+.Auth-Body .Login, .Reg, .Verify {
+    padding: 15px;
+    width: 70%;
+    height: fit-content;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Auth-Body .Login {
+    z-index: 2;
+    opacity: 1;
+    visibility: visible;
+}
+
+.Auth-Body .Reg, .Verify {
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.REG_MAIL {
+    display: none;
+}
+
+.Form_Container-Text {
+    color: var(--TITLE_COLOR);
+    font-family: var(--FF_TITLE);
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.Authorization-Form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Authorization-Input {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.Authorization-BTN_1 {
+    background: var(--GRADIENT);
+    color: #FFF;
+    width: 100%;
+    font-size: var(--FS_TEXT);
+    margin-top: 10px;
+    border-radius: 14px;
+    padding: 10px;
+    -webkit-box-shadow: var(--GRADIENT_SHADOW);
+    -moz-box-shadow: var(--GRADIENT_SHADOW);
+    box-shadow: var(--GRADIENT_SHADOW);
+}
+
+.Authorization-BTN_2 {
+    background: rgb(225 225 225 / 33%);
+    color: var(--TEXT_COLOR);
+    width: 100%;
+    font-size: var(--FS_TEXT);
+    margin-top: 10px;
+    border-radius: 14px;
+    padding: 10px;
+}
+
+.Authorization-Accept_R {
+    margin: 5px 0px 13px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.Authorization-Accept_R_BTN {
+    background: var(--GRADIENT);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+}
+
+.Authorization-RC {
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+/* Статус бар */
+
+.Search {
+    width: 100%;
+    max-width: 500px;
+    height: 34.7px;
+    padding: 0px 12px;
+}
+
+.Search-Result {
+    background: var(--AIR_COLOR);
+    backdrop-filter: var(--AIR_BLUR);
+    -webkit-backdrop-filter: var(--AIR_BLUR);
+    border-radius: var(--BR_BASE);
+    width: 40%;
+    max-width: 500px;
+    height: 200px;
+    margin: var(--C_TOP_MARGIN) auto auto auto;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    overflow: auto;
+    transform: translateY(-150%);
+    opacity: 0;
+    visibility: hidden;
+    -webkit-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+    -moz-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+    box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+}
+
+.Search-R_USRS {
+    margin-bottom: 10px;
+}
+
+.Search-R_USR {
+    background: rgb(210 210 210 / 50%);
+    color: var(--TEXT_COLOR);
+    height: 50px;
+    border-radius: 12px;
+    margin: 10px 10px auto 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .Avatar {
+        background: var(--NL_GRADIENT);
+        border-radius: 100px;
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        margin: 0px 10px 0px 15px;
+        font-size: 20px;
+    }
+
+    .Name {
+        font-size: var(--FS_NAME);
+        white-space: nowrap;
+    }
+
+    .Posts {
+        color: var(--D_OR_P_COLOR);
+        font-size: var(--FS_D_OR_P);
+    }
+}
+
+.Search-R_USR:active {
+    filter: brightness(0.8);
+}
+
+.Search-Error {
+    background: rgb(210 210 210 / 50%);
+    color: var(--TITLE_COLOR);
+    height: 50px;
+    border-radius: 12px;
+    margin: 10px 10px auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.NavPanel-Container {
+    z-index: 30;
+    margin: 84px auto 0px auto;
+    width: 100%;
+    max-width: 1000px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    transform: translateY(-150%);
+    opacity: 0; 
+    visibility: hidden
+}
+
+.NavPanel {
+    background: var(--AIR_COLOR);
+    width: fit-content;
+    border-radius: var(--BR_BASE);
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--AIR_SHADOW);
+}
+
+.NavPanel-Btn {
+    background: rgb(210 210 210 / 50%);
+    color: var(--TEXT_COLOR);
+    font-size: var(--FS_TITLE);
+    border-radius: 5%/18%;
+    width: 100%;
+    padding: 6.5px 10px;
+}
+
+/* Главная страница */
+
+.Home-Page {
+    .UI-C_R {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+.Home-Page .UI-Tabs {
+    background: var(--BLOCK_COLOR);
+    box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 50%);
+}
+.Home-Page .UI-Tabs .Tab {
+    background: var(--BLOCK_COLOR);
+}
+.Home-Page .UI-Tabs .ActiveTab {
+    background: var(--BTN_BACKGROUND);
+    box-shadow: 0px 0px 0px rgb(255 255 255 / 0%);
+}
+
+/* Пост */
+
+.Post-Page {
+    width: 850px;
+    margin: auto;
+
+    .UI-C_L, .UI-C_R {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.Post {
+    width: 100%;
+    padding: 10px;
+    overflow: hidden;
+    position: relative;
+    transition: .5s;
+
+    .TopBar {
+        display: flex;
+        align-items: center;
+
+        .Info {
+            color: rgb(89 93 105);
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+            .Avatar {
+                width: 40px;
+                height: 40px;
+                display: block;
+                margin: 3px 10px 3px 3px;
+                font-size: 20px;
+            }
+
+            .Name {
+                color: var(--TEXT_COLOR);
+                font-size: var(--FS_NAME);
+                width: 100%;
+                white-space: nowrap;
+                display: flex;
+                align-items: center;
+            }
+            .Name .UI-PRELOAD {
+                width: 100px;
+                height: 13px;
+                margin-bottom: 3px;
+            }
+        
+            .Date {
+                color: var(--D_OR_P_COLOR);
+                font-size: var(--FS_D_OR_P);
+                line-height: 1.5em;
+            }
+            .Date .UI-PRELOAD {
+                width: 80px;
+                height: 13px;
+            }
+
+            .UserIcons {
+                width: 100%;
+                height: 100%;
+                margin: 0.4px 0px 0px 1px;
+                display: flex;
+                align-items: center;
+            }
+
+            .UserIcons svg {
+                width: 14px;
+                height: 14px;
+                fill: var(--TEXT_COLOR);
+                margin-left: 3px;
+            }
+
+            .UserIcons img {
+                width: 14px;
+                height: 14px;
+            }
+        }
+    }
+
+    .Text {
+        color: var(--TEXT_COLOR);
+        font-size: var(--FS_TEXT);
+        margin: 7px 3px 12px;
+        line-height: 1.3em;
+        word-wrap: break-word;
+        white-space: pre-line;
+    }
+    .Text .UI-PRELOAD {
+        height: 40px;
+        border-radius: var(--BR_BASE);
+    }
+    .Text .UI-PRELOAD::after {
+        filter: blur(40px);
+    }
+    
+    .Image {
+        background: var(--NL_GRADIENT);
+        border-radius: var(--BR_BASE);
+        margin: 10px 0px;
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+        user-select: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .IMG {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            object-fit: contain;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .Blur, .Censoring {
+            background: rgb(201 201 201 / 28%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--BR_BASE);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+
+        .Censoring {
+            z-index: 4;
+            display: flex;
+            align-items: center;
+        }
+        .Censoring .Info {
+            margin: auto;
+            text-align: center;
+        }
+        .Censoring .Info .Text {
+            color: #FFF;
+            text-shadow: 0px 0px 5px rgb(0 0 0 / 50%);
+        }
+        .Censoring .Info .ShowButton {
+            background: var(--AIR_COLOR);
+            color: var(--TEXT_COLOR);
+            border-radius: var(--BR_BASE);
+            padding: 5px 16px;
+            margin-top: 10px;
+            box-shadow: 0px 0px 5px rgb(0 0 0 / 30%);
+        }
+
+        .BlurIMG {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            z-index: 0;
+        }
+    }
+
+    .GovernButton {
+        background: var(--BTN_BACKGROUND);
+        color: var(--BTN_COLOR);
+        border-radius: 100px;
+        width: 25px;
+        height: 25px;
+        min-width: 25px;
+        min-height: 25px;
+        margin-right: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .GovernButton i {
+        height: 15.413px;
+        font-size: 16px;
+    }
+
+    .GovernButtons {
+        background: var(--AIR_COLOR);
+        -webkit-backdrop-filter: saturate(600%) blur(10px);
+        backdrop-filter: saturate(600%) blur(10px);
+        width: fit-content;
+        border-radius: var(--BR_BASE);
+        padding: 5px;
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        z-index: 5;
+        opacity: 0;
+        visibility: hidden;
+        display: flex;
+        flex-direction: column;
+
+        .Container {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .Button {
+            background: rgb(210 210 210 / 50%);
+            color: var(--BTN_COLOR);
+            text-shadow: 0px 0px 5px rgb(231 231 231 / 90%);
+            width: 100%;
+            padding: 5px;
+            display: flex;
+        }
+    }
+
+    .InteractionButtons {
+        display: flex;
+        transition: .2s;
+        
+        .Like {
+            margin-right: 2px;
+            border-radius: 100px 0px 0px 100px;
+        }
+        .Dislike {
+            border-radius: 0px 100px 100px 0px;
+        }
+        .Liked {
+            background: linear-gradient(336deg, #9b557ab8, #b21bff91);
+            color: #FFF;
+            fill: #FFF;
+            -webkit-box-shadow: 0px 0px 9px -1px rgb(200 127 219 / 50%);
+            -moz-box-shadow: 0px 0px 9px -1px rgb(200 127 219 / 50%);
+            box-shadow: 0px 0px 9px -1px rgb(200 127 219 / 50%);
+        }
+    }
+
+    .InteractionButton {
+        background: var(--BTN_BACKGROUND);
+        color: var(--BTN_COLOR);
+        border-radius: 32px/30px;
+        width: fit-content;
+        min-width: fit-content;
+        height: 30px;
+        padding: 0px 10px;
+        margin-right: 7px;
+        font-size: 12px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        transition: .3s;
+    }
+    .InteractionButton i {
+        height: 19.213px;
+        font-size: 20px;
+        margin-right: 9px;
+    }
+    .InteractionButton .UI-PRELOAD {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: 0px;
+    }
+    .InteractionButton .UI-PRELOAD::after {
+        filter: blur(20px);
+    }
+
+    .ShareImposition {
+        background: var(--BLOCK_COLOR);
+        width: 100%;
+        height: 30px;
+        padding: 10px;
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        transform: translateX(-100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .Interaction {
+            width: 100%;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+
+            .Back svg {
+                stroke: var(--BTN_COLOR);
+            }
+
+            .URL {
+                background: var(--BTN_BACKGROUND);
+                border-radius: 100px 0px 0px 100px;
+                margin-right: 2px;
+                width: 100%;
+                height: 100%;
+                padding: 0px 10px;
+                font-size: var(--FS_TEXT);
+                display: flex;
+                align-items: center;
+            }
+
+            .URL input {
+                background: rgb(255 255 255 / 0%);
+                color: var(--BTN_COLOR);
+                width: 100%;
+                border: none;
+            }
+
+            .CopyURL {
+                background: var(--BTN_BACKGROUND);
+                border-radius: 0px 100px 100px 0px;
+                width: 60px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .CopyURL i {
+                color: var(--BTN_COLOR);
+                font-size: 18px;
+                height: 18px;
+            }
+        }
+    }
+}
+
+.UI-ImageView {
+    background: var(--AIR_COLOR);
+    border-radius: var(--BR_BASE);
+    width: 100%;
+    max-width: 850px;
+    height: 500px;
+    margin: auto;
+    overflow: hidden;
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: var(--AIR_SHADOW);
+
+    .IMG {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        object-fit: contain;
+        z-index: 3;
+    }
+    .Blur {
+        background: rgb(255 255 255 / 50%);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+    }
+    .BlurIMG {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        z-index: 0;
+        opacity: 0.8;
+    }
+}
+.UI-IV_Interaction {
+    background: var(--AIR_COLOR);
+    border-radius: var(--BR_BASE);
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 20px;
+    margin: auto;
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    bottom: -540px;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: var(--AIR_SHADOW);
+
+    .Info {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .Buttons {
+        border-radius: 100px;
+        width: fit-content;
+        margin: auto;
+        overflow: hidden;
+        display: flex;
+    }
+
+    .Buttons button, a {
+        background: var(--BTN_BACKGROUND);
+        color: var(--BTN_COLOR);
+        padding: 5px 15px;
+        margin: 0;
+        font-size: var(--FS_TEXT);
+    }
+}
+.UI-IV_DisableFullscrean {
+    background: rgb(255 255 255 / 40%);
+    color: rgb(0 0 0 / 50%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--BR_BASE);
+    width: fit-content;
+    margin: auto;
+    padding: 10px 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    z-index: 21;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.Post-Comments {
+    .Comment {
+        background: var(--BTN_BACKGROUND);
+        border-radius: 12px;
+        padding: 10px;
+        margin-bottom: 5px;
+
+        .TopBar {
+            display: flex;
+            align-items: center;
+
+            .Avatar {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                margin-right: 10px;
+                font-size: 18px;
+            }
+
+            .Name {
+                font-size: var(--FS_NAME);
+                width: 100%;
+                margin-bottom: 1px;
+                white-space: nowrap;
+                display: flex;
+                align-items: center;
+            }
+        
+            .Date {
+                color: var(--D_OR_P_COLOR);
+                font-size: var(--FS_D_OR_P);
+            }
+        }
+        
+        .Text {
+            color: var(--TEXT_COLOR);
+            font-size: var(--FS_TEXT);
+            margin-top: 10px;
+            word-wrap: break-word;
+            white-space: pre-line;
+        }
+    }
+
+    .Error {
+        color: var(--TEXT_COLOR);
+        height: fit-content;
+        padding: 5px;
+    }
+}
+
+.Post-Add_comment {
+    margin: 15px 5px 6px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .UI-Input {
+        width: 100%;
+        height: 34.7px;
+        padding: 0px 15px;
+        border-radius: 100px 0px 0px 100px;
+    }
+    .Send {
+        background: var(--GRADIENT);
+        border-radius: 0px 100px 100px 0;
+        width: 50px;
+        height: 34.7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--GRADIENT_SHADOW);
+        -moz-box-shadow: var(--GRADIENT_SHADOW);
+        -webkit-box-shadow: var(--GRADIENT_SHADOW);
+    }
+    .Send i {
+        color: var(--AIR_COLOR);
+        font-size: 20px;
+        height: 19px;
+    }
+}
+
+/* Добавить пост */
+
+.AddPost {
+    position: relative;
+    user-select: none;
+}
+.AddPost .UI-Input {
+    width: 98%;
+    height: 80px;
+    margin: 10px auto;
+    padding: 7px;
+    overflow: hidden;
+    resize: none;
+    display: block;
+}
+.AddPost .Buttons {
+    margin: 14px 5px 3px 5px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+.AddPost .Buttons .Send {
+    background: var(--GRADIENT);
+    height: 30px;
+    color: #FFF;
+    padding: 0px 23px;
+    border-radius: 32px/30px;
+    display: block;
+    box-shadow: var(--GRADIENT_SHADOW);
+    -moz-box-shadow: var(--GRADIENT_SHADOW);
+    -webkit-box-shadow: var(--GRADIENT_SHADOW);
+}
+.AddPost .Buttons .AddFileButtons {
+    display: inline-flex;
+}
+.AddPost .Buttons .AddFileButtons .AddFile,  .Close, .FileSettings {
+    background: var(--BTN_BACKGROUND);
+    color: var(--BTN_COLOR);
+    border-radius: 100px;
+    width: fit-content;
+    min-width: 30px;
+    height: 30px;
+    padding: 0px 6px;
+    margin-right: 4px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.AddPost .Buttons .AddFileButtons .Close {
+    background: var(--BTN_CLOSE_COLOR);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--BR_BASE);
+    position: absolute;
+    display: none;
+}
+.AddPost .Buttons .AddFileButtons .FileSettings {
+    border-radius: var(--BR_BASE);
+    display: none;
+}
+.AddPost .Buttons .AddFileButtons .AddFile svg, .Close svg, .FileSettings svg {
+    fill: var(--BTN_COLOR);
+    width: 20px;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.AddPost .Buttons .AddFileButtons .AddFile:active, .Close:active, .FileSettings:active {
+    filter: brightness(0.8);
+}
+.AddPost .Buttons .AddFileButtons .SelectFile {
+    background: var(--BTN_BACKGROUND);
+    border-radius: var(--BR_BASE);
+    font-size: var(--FS_TEXT);
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+}
+.AddPost .Buttons .AddFileButtons .FileName {
+    max-width: 190px;
+    text-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.AddPost .Buttons input {
+    display: none;
+}
+
+.AddPost .FileSettingsSwitchs {
+    background: var(--AIR_COLOR);
+    backdrop-filter: var(--AIR_BLUR);
+    -webkit-backdrop-filter: var(--AIR_BLUR);
+    font-size: var(--FS_TEXT);
+    width: 250px;
+    border-radius: 15px;
+    margin: 3px 5px;
+    padding: 10px 15px;
+    position: absolute;
+    z-index: 1;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+}
+.AddPost .FileSettingsSwitchs .Item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.AddPost .FileSettingsSwitchs .UI-Switch {
+    margin-left: 5px;
+}
+
+/* Профиль */
+
+.Profile-Page {
+    width: 850px;
+    margin: auto;
+}
+.Profile-Page .UI-C_L {
+    width: 80%;
+}
+.Profile-Page .UI-C_R {
+    width: 100%;
+    max-width: 100%;
+}
+.Profile-Page .UI-Tabs {
+    background: var(--BLOCK_COLOR);
+    box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 50%);
+}
+.Profile-Page .UI-Tabs .Tab {
+    background: var(--BLOCK_COLOR);
+}
+.Profile-Page .UI-Tabs .ActiveTab {
+    background: var(--BTN_BACKGROUND);
+    box-shadow: 0px 0px 0px rgb(255 255 255 / 0%);
+}
+
+.Profile-InfoBlock {
+    height: fit-content;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+
+    .Avatar {
+        border: 4px solid var(--BLOCK_COLOR);
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        font-size: 50px;
+        position: absolute;
+        top: 98px;
+        left: 0;
+        right: 0;
+    }
+
+    .Name {
+        font-family: var(--FF_TITLE);
+        font-size: var(--FS_TITLE);
+        margin: 15px 10px 2px 10px;
+        white-space: nowrap;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .Username {
+        color: var(--TEXT_COLOR);
+        font-size: var(--FS_TEXT);
+        margin: 2px 10px 15px 10px;
+    }
+
+    .UserIcons {
+        width: 100%;
+        height: 100%;
+        margin: 0.4px 0px 0px 1px;
+        display: flex;
+        align-items: center;
+    }
+
+    .UserIcons svg, .UserIcons img {
+        width: 17px;
+        height: 17px;
+        margin-left: 3px;
+        cursor: pointer;
+    }
+
+    .UserIcons svg {
+        fill: var(--TEXT_COLOR);
+    }
+
+    .IconInfoContainer {
+        width: 100%;
+        position: relative;
+
+        .Info {
+            background: var(--AIR_COLOR);
+            -webkit-backdrop-filter: saturate(600%) blur(10px);
+            backdrop-filter: saturate(600%) blur(10px);
+            border-radius: var(--BR_BASE);
+            font-size: var(--FS_TEXT);
+            font-family: 'SF Pro Display Bold';
+            padding: 10px;
+            position: absolute;
+            width: 200px;
+            height: fit-content;
+            margin-right: auto;
+            margin-left: auto;
+            top: 5px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 1;
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    .ButtonsContainer {
+        width: fit-content;
+        position: relative;
+
+        .Buttons {
+            height: 30px;
+            margin: 0px 0px 15px 0px;
+            border-radius: var(--BR_BASE);
+            letter-spacing: 0.03em;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+        }
+
+        .Button, .SubButton {
+            background: var(--BTN_BACKGROUND);
+            color: var(--BTN_COLOR);
+            height: 100%;
+            padding: 0px 15px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .SubButton {
+            background: var(--GRADIENT);
+            color: #FFF;
+            letter-spacing: 0.03em;
+        }
+        .Button i {
+            color: var(--BTN_COLOR);
+            font-size: 20px;
+            width: 20px;
+            height: 19px;
+        }
+    }
+
+    .GovernButtons {
+        background: var(--AIR_COLOR);
+        -webkit-backdrop-filter: saturate(600%) blur(10px);
+        backdrop-filter: saturate(600%) blur(10px);
+        border-radius: var(--BR_BASE);
+        width: 100%;
+        padding: 5px;
+        position: absolute;
+        z-index: 2;
+        top: 35px;
+        opacity: 0;
+        visibility: hidden;
+        display: flex;
+        flex-direction: column;
+
+        .Button {
+            background: rgb(210 210 210 / 50%);
+            color: var(--BTN_COLOR);
+            width: 100%;
+            border-radius: 9px;
+            padding: 5px;
+            display: flex;
+        }
+    }
+
+    .Info {
+        border-radius: var(--BR_BASE);
+        width: 100%;
+        height: 50px;
+        overflow: hidden;
+        display: flex;
+
+        .Container {
+            background: var(--BTN_BACKGROUND);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .Value {
+                height: 20px;
+                display: flex;
+                align-items: center;
+            }
+            .Title {
+                font-size: 0.9em;
+                color: var(--D_OR_P_COLOR);
+            }
+        }
+    }
+    .Description {
+        background: var(--BTN_BACKGROUND);
+        border-radius: var(--BR_BASE);
+        margin-top: 5px;
+        width: 100%;
+        padding: 8px 7px;
+
+        .Title {
+            color: var(--D_OR_P_COLOR);
+            font-size: 0.9em;
+            margin-bottom: 4px;
+        }
+        .Text {
+            word-wrap: break-word;
+            white-space: pre-line;
+        }
+    }
+}
+
+.Profile-Cover {
+    background: var(--NL_GRADIENT);
+    border-radius: 5px;
+    width: 100%;
+    height: 150px;
+    position: relative;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.Profile-Cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Чат */
+
+.Messanger {
+    width: 100%;
+    height: 80%;
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.Chats {
+    background: var(--BLOCK_COLOR);
+    border-radius: 8px;
+    width: 35%;
+    height: 100%;
+    max-width: 350px;
+    overflow: hidden;
+    position: relative;
+    right: -5px;
+}
+
+.Chats-Title {
+    background: var(--AIR_COLOR);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px rgb(238 238 238) solid;
+    color: var(--TEXT_COLOR);
+    font-family: var(--FF_TITLE);
+    font-size: var(--FS_TITLE);
+    width: 100%;
+    height: 55px;
+    white-space: nowrap;
+    padding-left: 20px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+}
+
+.Chats-List_scroll {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow-x: scroll;
+}
+
+.Chats-List {
+    width: 90%;
+    margin-top: 65px
+}
+
+.Chats-User {
+    background: rgb(247 247 247);
+    border-radius: var(--BR_BASE);
+    width: 100%;
+    min-width: 300px;
+    margin: 5px 8px;
+    padding: 7px 10px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    .Avatar {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        font-size: 20px;
+    }
+}
+
+.Chats-NandLM {
+    margin: 5px 15px;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Chats-Name {
+    color: var(--TEXT_COLOR);;
+    font-family: var(--FF_TITLE);
+    margin-bottom: 3px;
+}
+
+.Chats-LastMessage {
+    color: var(--D_OR_P_COLOR);
+    font-size: 0.87em;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Chat {
+    background: var(--BLOCK_COLOR);
+    border-radius: 8px;
+    width: 50%;
+    height: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    position: relative;
+    left: -5px;
+    z-index: 2;
+    -webkit-box-shadow: 0px 2px 7px 0px rgb(200 200 200 / 50%);
+    -moz-box-shadow: 0px 2px 7px 0px rgb(200 200 200 / 50%);
+    box-shadow: 0px 2px 7px 0px rgb(200 200 200 / 50%);
+}
+
+.Chat-Error {
+    background: var(--BLOCK_COLOR);
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+}
+
+.Chat-Error_message {
+    background: rgb(235 235 235 / 85%);
+    color: var(--TEXT_COLOR);
+    font-size: var(--FS_TEXT);
+    max-width: 85%;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    margin: auto;
+    border-radius: var(--BR_BASE);
+}
+
+.Chat-TopBar, .Chat-TopWarning, .Chat-DownBar {
+    background: var(--AIR_COLOR);
+    backdrop-filter: blur(15px);
+    width: 100%;
+    position: absolute;
+    user-select: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.Chat-TopBar {
+    border-bottom: 1px rgb(238 238 238) solid;
+    color: var(--TEXT_COLOR);
+    fill: var(--TEXT_COLOR);
+    height: 55px;
+    padding: 5px 20px;
+    align-items: center;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+
+    .icon-ChatBack {
+        font-size: 23px;
+        cursor: pointer;
+    }
+    .Avatar {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.Chat-DownBar {
+    border-top: 1px rgb(238 238 238) solid;
+    height: 55px;
+    padding: 5px 20px;
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Chat-TopWarning {
+    transform: translateY(-100px) scale(0.9);
+    opacity: 0;
+    margin-top: 55px;
+    padding: 10px;
+    border-bottom: 1px rgb(238 238 238) solid;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .Text {
+        font-size: 0.9em;
+        text-align: center;
+        width: 90%;
+    }
+
+    .Buttons {
+        border-radius: var(--BR_BASE);
+        width: 90%;
+        height: 23px;
+        margin-top: 10px;
+        overflow: hidden;
+        display: flex;
+
+        .Apply, .Close {
+            background: var(--BTN_BACKGROUND);
+            color: var(--TEXT_COLOR);
+            width: 100%;
+            height: 100%;
+        }
+
+        .Close {
+            background: var(--BTN_CLOSE_COLOR);
+            border-radius: 0px;
+            margin-right: 0px;
+        }
+    }
+}
+
+.Chat-Name {
+    font-size: 1.2em;
+}
+
+.Chat-Input {
+    width: 100%;
+    height: 35px;
+    border-radius: 100px;
+    padding: 0px 20px;
+}
+
+.Chat-Send_button {
+    background: var(--GRADIENT);
+    border-radius: 100px;
+    width: 30px;
+    min-width: 35px;
+    height: 35px;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-box-shadow: var(--GRADIENT_SHADOW);
+    -moz-box-shadow: var(--GRADIENT_SHADOW);
+    box-shadow: var(--GRADIENT_SHADOW);
+}
+.Chat-Send_button i {
+    color: #FFF;
+    font-size: 20px;
+    height: 19px;
+}
+
+.Chat-Messanges {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.Chat-Messanges_scroll {
+    flex: 1;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.Chat-Messanges_list {
+    padding: 60px 0px;
+    min-height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.Chat-M_Me, .Chat-M_URS {
+    font-size: 0.9em;
+    position: relative;
+    
+    .Time {
+        color: rgb(170 170 170);
+        font-size: 0.7em;
+        position: absolute;
+        right: 13px;
+        bottom: 4px;
+    }
+}
+
+.Chat-M_Me {
+    background: var(--GRADIENT);
+    color: #FFF;
+    font-size: var(--FS_TEXT);
+    width: fit-content;
+    max-width: 300px;
+    margin: 3px 10px 3px auto;
+    padding: 8px 50px 8px 15px;
+    border-radius: 20px 20px 1px 20px;
+    word-wrap: break-word;
+    white-space: pre-line;
+
+    .Time {
+        color: rgb(255 255 255 / 70%);
+    }
+}
+
+.Chat-M_URS {
+    background: rgb(235 235 235 / 85%);
+    color: var(--TEXT_COLOR);
+    font-size: var(--FS_TEXT);
+    width: fit-content;
+    max-width: 300px;
+    padding: 8px 50px 8px 15px;
+    margin: 3px auto 3px 10px;
+    border-radius: 20px 20px 20px 1px;
+    word-wrap: break-word;
+    white-space: pre-line;
+}
+
+/* Настройки */
+
+.Settings-Page {
+    flex-direction: row-reverse;
+
+    .UI-C_L {
+        width: 100%;
+    }
+    .UI-C_R {
+        width: 100%;
+        max-width: 350px;
+
+        .Profile-InfoBlock {
+            .Profile-Cover {
+                height: 100px;
+            }
+            .Avatar {
+                width: 80px;
+                height: 80px;
+                top: 105px;
+            }
+            .Username {
+                margin: 2px 10px 0px 10px;
+            }
+        }
+    }
+    .UI-Block {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .UI-Title {
+        width: 100%;
+    }
+}
+
+/* Настройки - Предпросмотр профиля */
+
+.Settings-PRFL_Email {
+    background: var(--BTN_BACKGROUND);
+    border-radius: 10px;
+    width: fit-content;
+    margin-top: 10px;
+    padding: 4px 10px;
+    position: relative;
+    overflow: hidden;
+    transition: .2s;
+    user-select: all;
+}
+
+.Settings-PRFL_Email::after {
+    content: '';
+    background: var(--BTN_BACKGROUND);
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    transform: translateX(0);
+    box-shadow: -11px 0px 9px 10px var(--BTN_BACKGROUND);;
+    transition: .2s;
+}
+
+.Settings-PRFL_Email.hover::after {
+    transform: translateX(120%);
+}
+
+/* Настройки - Редактирование профиля */
+
+.Settings-ChangeButtons {
+    width: fit-content;
+    border-radius: 10px;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+
+    .Button, .ButtonDL {
+        background: var(--BTN_BACKGROUND);
+        color: var(--BTN_COLOR);
+        font-size: var(--FS_TEXT);
+        margin-bottom: 1.5px;
+        padding: 5px 10px;
+    }
+    .Button {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .Button:active {
+        filter: brightness(0.8);
+    }
+    .ButtonDL {
+        background: var(--BTN_CLOSE_COLOR);
+        margin-bottom: 0px;
+    }
+}
+.Settings-ChangeButtons input {
+    display: none;
+}
+
+.Settings-CP_Cover {
+    background: var(--NL_GRADIENT);
+    border-radius: 5px;
+    width: 100%;
+    height: 130px;
+    position: relative;
+    overflow: hidden;
+
+    .Settings-ChangeButtons {
+        border-radius: 5px 0px 0px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+
+        .Button, .ButtonDL {
+            background: rgb(242 242 242 / 70%);
+            backdrop-filter: blur(3px);
+            color: rgb(79 79 79);
+        }
+        .Button {
+            border-radius: 5px 0px 0px 0px;
+        }
+        .ButtonDL {
+            background: var(--BTN_CLOSE_COLOR);
+        }
+    }
+
+    .Cover {
+        width: 100%;
+        height: 100%;
+    }
+
+    .Cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.Settings-CP_Avatar {
+    margin: 4px 5px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .Avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 35px;
+        position: relative;
+        left: 14px;
+        z-index: 1;
+    }
+    .Settings-ChangeButtons {
+        right: 14px;
+        .Button, .ButtonDL {
+            padding: 5px 10px 5px 40px;
+        }
+    }
+}
+
+.Settings-CP_Input_container {
+    width: 100%;
+    margin: 0px 0px 3px 0px;
+    padding: 0px 5px;
+}
+
+.Settings-CP_IC_Title {
+    font-size: 0.9em;
+    color: #9a9a9a;
+    margin: 6px 0px 3px 6px;
+}
+
+.Settings-CP_Input_container input {
+    background: rgb(244 244 244);
+    width: 100%;
+    height: 34.7px;
+    padding: 0px 9px;
+    position: sticky;
+    z-index: 1;
+}
+
+.Settings-CP_Input_container textarea {
+    background: rgb(244 244 244);
+    width: 100%;
+    height: 80px;
+    padding: 7px 9px;
+    position: sticky;
+    z-index: 1;
+    overflow: hidden;
+    resize: none;
+}
+
+/* Настройки - Применить изменения */
+
+.Settings-Q_container {
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    .Question {
+        background: var(--AIR_COLOR);
+        backdrop-filter: var(--AIR_BLUR);
+        -webkit-backdrop-filter: var(--AIR_BLUR);
+        border-radius: var(--BR_BASE);
+        width: 100%;
+        padding: 10px;
+        position: absolute;
+        transform: translate(0) scale(0.5);
+        opacity: 0.1;
+        top: -40px;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .Apply, .Back {
+        border-radius: 10px;
+        width: 100%;
+        height: 30px;
+        text-align: center;
+    }
+    .Apply {
+        background: var(--GRADIENT);
+        color: #FFF;
+        margin-right: 5px;
+        -webkit-box-shadow: var(--GRADIENT_SHADOW);
+        -moz-box-shadow: var(--GRADIENT_SHADOW);
+        box-shadow: var(--GRADIENT_SHADOW);
+    }
+    .Back {
+        background: var(--BODY_COLOR);
+        color: var(--TEXT_COLOR);
+        margin-left: 5px;
+        border: 1px solid rgb(89 93 105 / 10%);
+    }
+}
+
+/* Настройки - Выбор темы */
+
+.Settings-Themes {
+    width: 100%;
+    padding: 0px 7px 10px;
+    display: flex;
+    overflow: scroll;
+    .Info {
+        color: var(--TEXT_COLOR);
+        font-size: 10px;
+        width: 75px;
+        margin-top: 5px;
+        text-align: center;
+    }
+    .Selected {
+        background: var(--BTN_BACKGROUND);
+        border-radius: 100px;
+    }
+}
+
+/* Панель управления */
+
+.Dashboard-Blocks {
+    margin-top: 76px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.Dashboard-Block {
+    height: 150px;
+    position: relative;
+    margin: 4px;
+}
+
+.Dashboard-B_Text {
+    color: var(--TITLE_COLOR);
+    font-family: var(--FF_TITLE);
+    font-size: var(--FS_TITLE);
+}
+
+.Dashboard-B_Count {
+    color: var(--TEXT_COLOR);
+    font-size: 40px;
+    position: absolute;
+    bottom: 10px;
+}
+
+.Dashboard-BL_CNT {
+    width: 100%;
+}
+
+.Dashboard-SUB_BTN {
+    background: var(--BTN_BACKGROUND);
+    color: var(--TEXT_COLOR);
+    width: 95%;
+    height: 35px;
+    margin: 5px auto;
+    display: block;
+    border-radius: var(--BR_BASE);
+}
+
+.Dashboard-SUB_LIST {
+    width: 95%;
+    height: 190px;
+    margin: 10px auto;
+    overflow: auto;
+    border-radius: var(--BR_BASE);
+}
+
+.Dashboard-SUB_KEY {
+    height: 35px;
+    border-radius: var(--BR_BASE);
+    padding: 10px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.Dashboard-SK_A {
+    background: linear-gradient(90deg, var(--BTN_BACKGROUND) 60%, rgb(255 219 219) 100%);
+}
+
+.Dashboard-SK_NA {
+    background: linear-gradient(90deg, var(--BTN_BACKGROUND) 60%, rgb(209, 255, 202) 100%);
+}
+
+.Dashboard-SUB_USR {
+    background: var(--BTN_BACKGROUND);
+    border-radius: var(--BR_BASE);
+    height: 55px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+
+    .Avatar {
+        width: 40px;
+        height: 40px;
+        display: block;
+        margin: 0px 10px 0px 15px;
+        font-size: 20px;
+    }
+
+    .Name {
+        color: var(--TEXT_COLOR);
+        font-size: var(--FS_NAME);
+        white-space: nowrap;
+        max-width: 200px;
+    }    
+
+    .Posts {
+        color: var(--D_OR_P_COLOR);
+        font-size: var(--FS_D_OR_P);
+    }
+}
+
+.Dashboard-F_buttons {
+    display: flex;
+}
+.Dashboard-F_buttons .Button {
+    background: var(--BTN_BACKGROUND);
+    color: var(--BTN_COLOR);
+    border-radius: var(--BR_BASE);
+    padding: 8px 15px;
+}
+
+/* Информация */
+
+.Info-Block {
+    width: 100%;
+}
+
+.Info-BL_R {
+    background: rgb(246 246 246);
+    padding: 10px 8px;
+    margin-bottom: 7px;
+    border-radius: var(--BR_BASE);
+}
+
+.Info-BL_R_IF {
+    background: rgb(233 233 233);
+    border-radius: 11px;
+    width: 100%;
+    padding: 10px 7px;
+    margin-top: 8px;
+}
+
+.Info-UPT_B {
+    background: rgb(246 246 246);
+    padding: 10px 8px;
+    margin-bottom: 5px;
+    border-radius: var(--BR_BASE);
+}
+
+.Info-UPT_B_T {
+    color: var(--TEXT_COLOR);
+    font-family: var(--FF_TITLE);
+    font-size: 0.9em;
+    margin: 5px 0px 0px 0px;
+}
+
+.Info-UPT_B_C {
+    margin: 10px 0px 0px 0px;
+    font-size: 0.84em;
+    line-height: 18px;
+    white-space: pre-line;
+}
+
+/* Подписка */
+
+.GoldSub-Page {
+    .UI-C_L {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+        
+        .UI-Block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .UI-Title {
+            width: 100%;
+        }
+    }
+    .UI-C_R {
+        width: 100%;
+        max-width: 350px;
+    }
+}
+
+.GoldSub-Info {
+    height: 100%;
+    overflow: scroll;
+    position: relative;
+}
+
+.GoldSub-Info_scroll {
+    overflow: scroll;
+    margin-bottom: 130px;
+}
+
+.GoldSub-Info_action {
+    width: 100%;
+    position: absolute;
+}
+
+.GoldSub-C_L {
+    .UI-Block {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .UI-Title {
+        width: 100%;
+    }
+    .UI-B_LAST {
+        margin-bottom: 40px;
+    }
+}
+
+.GoldSub-Logo {
+    width: 110px;
+    height: 110px;
+    margin: 5px 0px 15px 0px;
+    filter: drop-shadow(3px 3px 5px rgba(251 176 11 / 40%));
+}
+
+.GoldSub-Price {
+    background-image: var(--GOLD_GRADIENT);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 20px;
+    font-family: var(--FF_TITLE);
+    margin: 8px 0px 20px 0px;
+}
+
+.GoldSub-Advantages {
+    border-radius: var(--BR_BASE);
+    overflow: hidden;
+}
+
+.GoldSub-A_Block {
+    background: var(--BTN_BACKGROUND);
+    font-size: var(--FS_TEXT);
+    padding: 7px 10px;
+    cursor: pointer;
+    user-select: none;
+}
+.GoldSub-A_Block:active {
+    filter: brightness(0.8);
+}
+
+.GoldSub-A_B_TITLE {
+    font-size: var(--FS_TITLE);
+    margin-bottom: 4px;
+    background-image: var(--GOLD_GRADIENT);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.GoldSub-Buttons {
+    background: var(--AIR_COLOR);
+    backdrop-filter: var(--AIR_BLUR);
+    -webkit-backdrop-filter: var(--AIR_BLUR);
+    width: 100%;
+    padding: 10px;
+    position: absolute;
+    bottom: 20px;
+    z-index: 1;
+    border-radius: var(--BR_BASE);
+    box-shadow: 0px 0px 10px -5px rgb(64 64 64 / 70%);
+
+    .Pay, .Activate {
+        font-size: var(--FS_TEXT);
+        border-radius: 8px;
+        width: 100%;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .Pay {
+        background: var(--GOLD_GRADIENT);
+        color: #FFF;
+        margin-bottom: 8px;    
+        box-shadow: 0px 0px 9px -1px rgb(253 177 102);
+        -moz-box-shadow: 0px 0px 9px -1px rgb(253 177 102);
+        -webkit-box-shadow: 0px 0px 9px -1px rgb(253 177 102);
+    }
+    .Activate {
+        background: rgb(210 210 210 / 50%);
+        color: var(--TEXT_COLOR);
+    }
+}
+
+.GoldSub-Users .UI-PRELOAD {
+    border-radius: var(--BR_BASE);
+    width: 100%;
+    height: 60px;
+    margin-bottom: 7px;
+}
+.GoldSub-Users .UI-PRELOAD::after {
+    filter: blur(50px);
+}
+
+.GoldSub-User {
+    background: linear-gradient(114deg, var(--BTN_BACKGROUND) 60%, #fff4dd);
+    border-radius: var(--BR_BASE);
+    padding: 10px;
+    margin-bottom: 7px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    .Avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+
+    .Name {
+        color: var(--TEXT_COLOR);
+        font-size: var(--FS_NAME);
+        white-space: nowrap;
+    }
+
+    .Posts {
+        color: var(--D_OR_P_COLOR);
+        font-size: var(--FS_D_OR_P);
+    }
+
+    .GoldStar {
+        width: 65px;
+        position: absolute;
+        bottom: -15px;
+        right: -12px;
+    }
+}
+
+.GoldSub-VideoPrew {
+    background: var(--AIR_COLOR);
+    backdrop-filter: blur(20px);
+    border-radius: 10px 10px 0px 0px;
+    height: fit-content;
+    padding: 10px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    transform: translateY(570px);
+    opacity: 0;
+    box-shadow: var(--AIR_SHADOW);
+
+    .Info {
+        margin: 10px 0px 20px 0px;
+    }
+    .InfoTitle {
+        font-family: var(--FF_TITLE);
+        margin-bottom: 4px;
+        background-image: var(--GOLD_GRADIENT);
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+    .InfoDec {
+        font-size: 0.9em;
+        margin-bottom: 10px;
+    }
+    .Close {
+        background: rgb(210 210 210 / 50%);
+        color: var(--TEXT_COLOR);
+        border-radius: var(--BR_BASE);
+        width: 100%;
+        height: 40px;
+    }
+}
+
+.GoldSub-VideoPrew video {
+    border-radius: var(--BR_BASE);
+    width: 100%;
+    overflow: hidden;
+    opacity: 0;
+}
+
+/* Просмотр EPACK */
+
+.EPACK-FileInput {
+    background: var(--BTN_BACKGROUND);
+    border-radius: var(--BR_BASE);
+    width: 100%;
+    padding: 5px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+}
+.EPACK-FileInput label {
+    background: rgb(255 255 255 / 80%);
+    border-radius: 6px;
+    padding: 7px 10px;
+    cursor: pointer;
+    text-align: center;
+}
+.EPACK-FileInput label:active {
+    filter: brightness(0.8);
+}
+.EPACK-FileInput input[type="file"] {
+    display: none;
+}
+.EPACK-FileInput .Text {
+    margin-left: 10px;
+}
+
+.EPACK-NonFile {
+    background: var(--BLOCK_COLOR_LITE);
+    border-radius: var(--BR_BASE);
+    width: fit-content;
+    padding: 10px;
+    margin: 70px auto;
+}
+
+.EPACK-Post {
+
+    .TopBar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        .Avatar {
+            width: 40px;
+            height: 40px;
+            display: block;
+            margin: 3px 10px 3px 3px;
+            font-size: 20px;
+        }
+    }
+    .Text {
+        color: var(--TEXT_COLOR);
+        font-size: var(--FS_TEXT);
+        width: 100%;
+        margin: 10px 0px;
+        padding: 0px 5px;
+        line-height: 1.3em;
+        word-wrap: break-word;
+        white-space: pre-line;
+    }
+    .Image {
+        background: var(--NL_GRADIENT);
+        border-radius: var(--BR_BASE);
+        margin: 10px 0px;
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .IMG {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            object-fit: contain;
+            z-index: 3;
+        }
+        .Blur {
+            background: rgb(201 201 201 / 28%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--BR_BASE);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+        .BlurIMG {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            z-index: 0;
+        }
+    }
+    .Interaction {
+        width: 100%;
+        height: 30px;
+        padding: 0px 10px;
+        display: flex;
+        
+        .InteractionCount {
+            background: rgb(255 255 255 / 0%);
+            color: var(--TEXT_COLOR);
+            width: fit-content;
+            padding: 0;
+            margin-right: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        .InteractionCount i {
+            font-size: 20px;
+            margin-right: 5px;
+        }
+    }
+}
+
+@media only screen and (max-device-width: 768px),
+only screen and (device-width: 768px) and (device-height: 768px),
+only screen and (width: 768px) and (orientation: landscape),
+only screen and (device-width: 768px),
+only screen and (max-width: 768px) {
+
+    /* Главное */
+
+    :root {
+        --FS_TEXT: 0.96em;
+        --FS_D_OR_P: 0.85em;
+    }
+
+    /* Авторизация */
+
+    .Auth-Body {
+        width: 95%;
+
+        .Left, .Right {
+            width: 100%;
+            height: 100%;
+            min-height: 100%;
+            position: absolute;
+        }
+
+        .LogoAndTitle {
+            display: none;
+        }
+
+        .Login, .Reg, .Verify {
+            width: 90%;
+        }
+    }
+
+    /* Панель навигации */
+
+    .UI-N_DIV {
+        padding: 0px 30px;
+    }
+
+    /* Интерфейс */
+    
+    .UI-L_NAV {
+        background: var(--AIR_COLOR);
+        backdrop-filter: var(--AIR_BLUR);
+        -webkit-backdrop-filter: var(--AIR_BLUR);
+        max-width: 100%;
+        height: 80px;
+        padding: 0px 30px;
+        position: fixed;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 30;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        box-shadow: 0px -4px 10px -9px rgb(64 64 64 / 50%);
+        -moz-box-shadow: 0px -4px 10px -9px rgb(64 64 64 / 50%);
+        -webkit-box-shadow: 0px -4px 10px -9px rgb(64 64 64 / 50%);
+
+        .UI-B_FIRST {
+            margin-top: 0px;
+        }
+        .GoldText {
+            flex-direction: column;
+        }
+        .PAGE-EPACK {
+            display: none;
+        }
+    }
+    .UI-LN_Button {
+        background: rgb(255 255 255 / 0%);
+        margin: 0;
+        width: 60px;
+        height: 80%;
+        font-size: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .UI-LN_Button i {
+        width: 25px;
+        height: 25px;
+        font-size: 25px;
+        margin: 0px 0px 5px 0px;
+    }
+    .UI-LNB_ACT {
+        background: var(--AIR_COLOR);
+    }
+
+    .Content {
+        width: 95%;
+        height: 100%;
+        margin: auto;
+        overflow: scroll;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .UI-PAGE_BODY {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        overflow: scroll;
+    }
+
+    .UI-PB_PRELOAD {
+        position: fixed;
+        margin: 0;
+    }
+
+    .UI-TopBar {
+        height: 80px;
+    }
+
+    .UI-N_L_AND_N {
+        width: 90%;
+        
+        .UI-Logo {
+            margin-right: 10px;
+        }
+    }
+
+    .UI-C_L, .UI-C_R {
+        margin: 0;
+        height: fit-content;
+        overflow: unset;
+        max-width: 100%;
+    }
+
+    .UI-B_FIRST {
+        margin-top: 90px;
+    }
+
+    .UI-Block {
+        width: 100%;
+    }
+
+    .UI-Window_BTNS {
+        height: 35px;
+    }
+
+    .Search {
+        width: 60%;
+    }
+
+    .Search-Result {
+        width: 95%;
+        margin: 90px auto auto auto;
+    }
+
+    .NavPanel-Container {
+        width: 95%;
+        margin: 90px auto auto auto;
+    }
+
+    .UI-ImageView {
+        max-width: 95%;
+    }
+    .UI-IV_Interaction {
+        max-width: 95%;
+    }
+
+    /* Вход (Мобильная версия) */
+
+    .Form_Container {
+        padding: 15px;
+        width: 88%;
+        max-width: 88%;
+    }
+
+    .Authorization-Input {
+        margin-bottom: 13px;
+    }
+
+    .Home-Status {
+        display: none;
+    }
+
+    /* Главная страница */
+
+    .Home-Page {
+        .UI-C_R {
+            display: none;
+        }
+    }
+
+    /* Пост */
+
+    #Posts {
+        margin-bottom: 90px;
+    }
+
+    .AddPost .Buttons .AddFileButtons .FileName {
+        max-width: 70px;
+    }
+
+    .Post-Page {
+        width: 95%;
+        height: fit-content;
+        margin: auto;
+
+        .UI-C_L, .UI-C_R {
+            width: 100%;
+            height: fit-content;
+        }
+
+        .UI-C_R {
+            .UI-B_FIRST {
+                margin: 0px 0px 7px 0px;
+            }
+        }
+    }
+
+    .Post {
+        width: auto;
+        min-width: auto;
+        .GovernButton {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+        }
+        .InteractionButton svg {
+            width: 23px;
+            height: 24px;
+        }
+    }
+
+    /* Профиль */
+
+    .Profile-Page {
+        width: 95%;
+        height: fit-content;
+        margin: auto;
+
+        .UI-C_L, .UI-C_R {
+            width: 100%;
+            height: fit-content;
+        }
+
+        .UI-C_R {
+            .UI-B_FIRST {
+                margin: 0px 0px 7px 0px;
+            }
+        }
+    }
+
+    .Profile-InfoBlock {
+        .UserIcons svg, .UserIcons img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    /* Настройки */
+
+    .Settings-Page {
+        flex-direction: column;
+        height: fit-content;
+
+        .UI-C_L {
+            width: 100%;
+            height: fit-content;
+            margin-bottom: 83px;
+
+            .UI-B_FIRST {
+                margin: 0px 0px 7px 0px;
+            }
+        }
+
+        .UI-C_R {
+            width: 100%;
+            height: fit-content;
+            max-width: 100%;
+        }
+    }
+
+    /* Подписка */
+
+    .GoldSub-Page {
+        .UI-C_L {
+            width: 100%;
+        }
+        .UI-C_R {
+            display: none;
+        }
+    }
+
+    .GoldSub-Buttons {
+        position: fixed;
+        width: 95%;
+        bottom: 90px;
+    }
+
+    .GoldSub-Info_scroll {
+        margin-bottom: 200px;
+    }
+
+    .GoldSub-VideoPrew {
+        width: 95%;
+        margin: auto;
+        position: fixed;
+        bottom: 60px;
+    }
+
+    .EPACK-Page .UI-C_R {
+        display: none;
+    }
+
+}

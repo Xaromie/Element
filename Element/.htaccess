@@ -1,0 +1,19 @@
+RewriteEngine On
+
+RewriteRule ^post/([^/]+)$ /Pages/Post.php?PostID=$1 [L]
+RewriteRule ^chat$ /Pages/Messager.php [L]
+RewriteRule ^chat/([^/]+)$ /Pages/Messager.php?Username=$1 [L]
+RewriteRule ^profile/(.+)$ /Pages/Profile.php?Username=$1 [L]
+
+RewriteRule ^auth$ /Pages/Authorization.php [L]
+RewriteRule ^(home|settings|goldsub|epack)$ /Pages/Home.php [L]
+RewriteRule ^info$ /Pages/Info.php [L]
+RewriteRule ^info/([^/]+)$ /Pages/Info.php?Page=$1 [L]
+RewriteRule ^panel$ /Pages/Dashboard.php [L]
+RewriteRule ^panel/([^/]+)$ /Pages/Dashboard.php?Page=$1 [L]
+RewriteRule ^выход$ /System/Scripts/Exit.php [L]
+
+RewriteRule ^db$ /System/Scripts/Global/DataBase.php [L]
+RewriteRule ^pass$ /System/Scripts/Global/Passworder.php [L]
+
+Options -Indexes

@@ -1,0 +1,320 @@
+
+:root {
+    --BODY_COLOR: rgb(21 21 21);
+    --AIR_COLOR: rgb(43 43 43 / 85%);
+    --AIR_SHADOW: 0px 3px 10px -3px rgb(0 0 0 / 50%);
+
+    --BLOCK_COLOR: rgb(37 37 37);
+    --BLOCK_COLOR_LITE: rgb(37 37 37 / 60%);
+
+    --BTN_COLOR: #dbdbdb;
+    --BTN_BACKGROUND: rgb(62 62 62);
+    --BTN_CLOSE_COLOR: rgb(207 92 92 / 50%);
+
+    --GRADIENT: linear-gradient(345deg, #5c375f, #5b5eae) #5c4882;
+    --GRADIENT_SHADOW: 0px 0px 9px -1px rgb(91 81 147 / 56%);
+
+    --TITLE_COLOR: rgb(255 255 255);
+    --TEXT_COLOR: rgb(233 233 233);
+
+    --D_OR_P_COLOR: rgb(191 191 191);
+}
+
+/* Интерфейс */
+
+.UI-Logo {
+    background-image: url("/System/Images/DarkLogo.svg");
+}
+
+.UI-Blur {
+    background: rgb(0 0 0 / 23%);
+}
+
+.UI-TopBar {
+    -webkit-box-shadow: 0px 4px 10px -9px rgb(0 0 0);
+    -moz-box-shadow: 0px 4px 10px -9px rgb(0 0 0);
+    box-shadow: 0px 4px 10px -9px rgb(0 0 0);
+}
+
+.UI-PB_PRELOAD {
+    background: linear-gradient(114deg, rgb(37 37 37), rgb(38 38 38));
+}
+
+.UI-PB_PRELOAD::before {
+    background: linear-gradient(45deg, rgb(45 45 45), rgb(51 51 51));
+}
+
+.UI-Block {
+    box-shadow: none;
+}
+
+.UI-Input {
+    background: rgb(76 76 76 / 50%);
+    border: 1px solid rgb(71 71 71 / 50%);
+}
+
+.UI-Switch {
+    background: rgb(76 76 76 / 50%);
+    border: 1px solid rgb(71 71 71 / 50%);
+}
+.UI-Switch-On {
+    background: var(--GRADIENT);
+    border: 0px solid rgba(255, 255, 255, 0);
+}
+
+.UI-LNB_ACT {
+    background: var(--BLOCK_COLOR);
+    box-shadow: 0px 4px 10px -9px rgb(0 0 0);
+}
+
+.UI-Tabs .ActiveTab {
+    background: rgb(77 77 77);
+    box-shadow: 0px 0px 3px rgb(40 40 40 / 60%);
+}
+
+.UI-PRELOAD {
+    background: rgb(100 100 100);
+}
+.UI-PRELOAD::after {
+    background: rgb(212 212 212 / 40%);
+}
+
+/* Интерфейс - Ошибка */
+
+.UI-Window_BG {
+    background: rgb(0 0 0 / 50%);
+}
+
+.UI-Window_BTN_NOACT {
+    background: rgb(76 76 76 / 50%);
+    border: 1px solid rgb(71 71 71 / 50%);
+}
+
+.UI-E_IMG {
+    filter: contrast(1);
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Статус бар */
+
+.Search-Result {
+    -webkit-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+    -moz-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+    box-shadow: 0px 4px 10px -9px rgb(0 0 0);
+}
+
+.Search-R_USR, .Search-Error, .NavPanel-Btn, .UI-BB_B_SLCT {
+    background: rgb(95 95 95 / 50%);
+}
+
+/* Пост */
+
+.Post {
+    .InteractionButtons {
+        .Liked {
+            background: rgb(81 60 97);
+            box-shadow: 0px 0px 9px -3px rgb(91 15 111 / 71%);
+            -moz-box-shadow: 0px 0px 9px -3px rgb(91 15 111 / 71%);
+            -webkit-box-shadow: 0px 0px 9px -3px rgb(91 15 111 / 71%);
+        }
+    }
+    .GovernButtons {
+        .Button {
+            background: rgb(95 95 95 / 50%);
+            text-shadow: 0px 0px 5px rgb(84 84 84 / 90%);
+        }
+    }
+}
+
+.Post .Image {
+    .Censoring, .Blur {
+        background: rgb(0 0 0 / 28%);
+    }
+}
+
+.UI-ImageView .Blur {
+    background: rgb(0 0 0 / 28%);
+}
+
+/* Профиль */
+
+.Profile-G_BTN {
+    background: rgb(50 50 50 / 50%);
+}
+
+/* Чат */
+
+.Chat {
+    -webkit-box-shadow: 0px 2px 7px 0px rgb(0 0 0 / 50%);
+    -moz-box-shadow: 0px 2px 7px 0px rgb(0 0 0 / 50%);
+    box-shadow: 0px 2px 7px 0px rgb(0 0 0 / 50%);
+}
+
+.Chats-Title {
+    background: rgb(53 53 53 / 85%);
+    border-bottom: var(--BTN_BACKGROUND) 1px solid;
+}
+
+.Chats-User {
+    background: var(--BTN_BACKGROUND);
+}
+
+.Chat-Error_message {
+    background: var(--BTN_BACKGROUND);
+}
+
+.Chat-TopBar, .Chat-TopWarning {
+    background: rgb(53 53 53 / 85%);
+    border-bottom: 1px var(--BTN_BACKGROUND) solid;
+}
+
+.Chat-DownBar {
+    background: rgb(53 53 53 / 85%);
+    border-top: 1px var(--BTN_BACKGROUND) solid;
+}
+
+.Chat-M_URS {
+    background: var(--BTN_BACKGROUND);
+    color: #FFF;
+}
+
+/* Страница информации */
+
+.Info-BL_R {
+    background: rgb(50 50 50);
+}
+.Info-BL_R_IF {
+    background: rgb(72 72 72);
+}
+.Info-UPT_B {
+    background: var(--BTN_BACKGROUND);
+}
+
+/* Панель управления */
+
+.Dashboard-SK_NA {
+    background: linear-gradient(90deg, var(--BTN_BACKGROUND) 60%, rgb(68 122 60) 100%);
+}
+.Dashboard-SK_A {
+    background: linear-gradient(90deg, var(--BTN_BACKGROUND) 60%, rgb(106 48 48) 100%);
+}
+
+/* Настройки */
+
+.Settings-CP_Cover .Settings-ChangeButtons .Button {
+    background: rgb(56 56 56);
+    color: #FFF;
+}
+.Settings-CP_Cover .Settings-ChangeButtons .ButtonDL {
+    color: #FFF;
+}
+
+.Settings-CP_Input_container {
+    .UI-Input {
+        background: rgb(56 56 56);
+        border: 1px solid rgb(64 64 64);
+    }
+    .Settings-Q_container {
+        .Back {
+            background: rgb(76 76 76 / 50%);
+            border: 1px solid rgb(71 71 71 / 50%);
+        }
+    }
+}
+
+.Settings-PRFL_Email::after {
+    background: var(--BTN_BACKGROUND);
+    box-shadow: -11px 0px 9px 10px #3e3e3e;
+}
+
+/* Подписка */
+
+.GoldSub-User {
+    background: linear-gradient(114deg, var(--BTN_BACKGROUND) 60%, #584724);
+}
+
+.GoldSub-Buttons {
+    .Pay {
+        box-shadow: 0px 0px 9px -1px rgb(147 89 31);
+        -moz-box-shadow: 0px 0px 9px -1px rgb(147 89 31);
+        -webkit-box-shadow: 0px 0px 9px -1px rgb(147 89 31);
+    }
+    .Activate {
+        background: rgb(76 76 76 / 50%);
+        border: 1px solid rgb(71 71 71 / 50%);
+    }
+}
+
+/* Анимации */
+
+@keyframes ChatShow {
+    0% {
+        width: 50%;
+        max-width: 400px;
+        -webkit-box-shadow: 0px 2px 7px 0px rgb(0 0 0 / 50%);
+        -moz-box-shadow: 0px 2px 7px 0px rgb(0 0 0 / 50%);
+        box-shadow: 0px 2px 7px 0px rgb(0 0 0 / 50%);
+    }
+    100% {
+        width: 60%;
+        max-width: 600px;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+}
+
+@keyframes ChatHide {
+    0% {
+        width: 60%;
+        max-width: 600px;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+    100% {
+        width: 50%;
+        max-width: 400px;
+        -webkit-box-shadow: 0px 2px 7px 0px rgb(0 0 0 / 50%);
+        -moz-box-shadow: 0px 2px 7px 0px rgb(0 0 0 / 50%);
+        box-shadow: 0px 2px 7px 0px rgb(0 0 0 / 50%);
+    }
+}
+
+@keyframes AP-FILE_SETTINGS-ACTIVE {
+    100% {
+        background: var(--AIR_COLOR);
+        box-shadow: 0px 0px 10px -3px rgb(0 0 0 / 50%);
+    }
+}
+@keyframes AP-FILE_SETTINGS-NOTACTIVE {
+    0% {
+        background: var(--AIR_COLOR);
+        box-shadow: 0px 0px 10px -3px rgb(0 0 0 / 50%);
+    }
+}
+
+/* Просмотр EPACK */
+
+.EPACK-FileInput label {
+    background: rgb(129 129 129 / 40%);
+}
+
+@media only screen and (max-device-width: 768px),
+only screen and (device-width: 768px) and (device-height: 768px),
+only screen and (width: 768px) and (orientation: landscape),
+only screen and (device-width: 768px),
+only screen and (max-width: 768px) {
+
+    .UI-LN_Button {
+        background: rgb(255 255 255 / 0%);
+    }
+    .UI-LNB_ACT {
+        background: var(--AIR_COLOR);
+    }
+
+}

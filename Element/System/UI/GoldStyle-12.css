@@ -1,0 +1,19 @@
+:root {
+    --GRADIENT: linear-gradient(465deg, #fab31e, #fd9347);
+    --GRADIENT_SHADOW: 0px 0px 9px 0.1px rgb(255 169 41 / 66%);
+}
+
+.UI-Logo {
+    background-image: url("/System/Images/GoldStar.svg");
+}
+
+.Post {
+    .InteractionButtons {
+        .Liked {
+            background: linear-gradient(465deg, #fab31e, #fd9347);
+            box-shadow: 0px 0px 9px -1px rgb(253 177 102);
+            -moz-box-shadow: 0px 0px 9px -1px rgb(253 177 102);
+            -webkit-box-shadow: 0px 0px 9px -1px rgb(253 177 102);
+        }
+    }
+}

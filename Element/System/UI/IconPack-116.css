@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'IconPack';
+  src:  url('Icons/IconPack.eot?ssm7dj');
+  src:  url('Icons/IconPack.eot?ssm7dj#iefix') format('embedded-opentype'),
+    url('Icons/IconPack.ttf?ssm7dj') format('truetype'),
+    url('Icons/IconPack.woff?ssm7dj') format('woff'),
+    url('Icons/IconPack.svg?ssm7dj#IconPack') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'IconPack' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+[class^="icon-Nav"]::before, [class*=" icon-Nav"]::before {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon-Nav_Home:before {
+  content: "\e900";
+}
+.icon-Nav_Settings:before {
+  content: "\e901";
+}
+.icon-Nav_Messager:before {
+  content: "\e902";
+}
+.icon-Nav_AdminPanel:before {
+  content: "\e903";
+}
+.icon-Nav_Sub:before {
+  content: "\e906";
+}
+.icon-Nav_EPACK:before {
+  content: "\e914";
+}
+.icon-Nav_Info:before {
+  content: "\e904";
+}
+.icon-Nav_Users:before {
+  content: "\e905";
+}
+.icon-Image:before {
+  content: "\e907";
+}
+.icon-Like:before {
+  content: "\e908";
+}
+.icon-Dislike:before {
+  content: "\e909";
+}
+.icon-Comment:before {
+  content: "\e90a";
+}
+.icon-Share:before {
+  content: "\e90b";
+}
+.icon-Copy:before {
+  content: "\e90c";
+}
+.icon-Connect:before {
+  content: "\e90d";
+}
+.icon-Back:before {
+  content: "\e90e";
+}
+.icon-Send:before {
+  content: "\e90f";
+}
+.icon-DotsH:before {
+  content: "\e910";
+}
+.icon-DotsV:before {
+  content: "\e911";
+}
+.icon-Exit:before {
+  content: "\e912";
+}
+.icon-ChatBack:before {
+  content: "\e913";
+}

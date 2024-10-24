@@ -1,0 +1,828 @@
+/* Анимации */
+
+/* Авторизация */
+
+@keyframes AUTH-SHOW_REG {
+    0% {
+        transform: translateX(150%) scale(0.5);
+        opacity: 0.1;
+        visibility: visible;
+    }
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes AUTH-HIDE_REG {
+    0% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        transform: translateX(150%) scale(0.5);
+        opacity: 0.1;
+        visibility: visible;
+    }
+}
+
+@keyframes AUTH-SHOW_LOGIN {
+    0% {
+        transform: translateX(-150%) scale(0.5);
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes AUTH-HIDE_LOGIN {
+    0% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        transform: translateX(-150%) scale(0.5);
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+
+/* Глобально - Окно информации */
+
+@keyframes WINDOW-SHOW {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0.1;
+        visibility: visible;
+        -webkit-box-shadow: 0px 4px 20px 3px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0px 4px 20px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 4px 20px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        visibility: visible;
+        box-shadow: var(--AIR_SHADOW);
+        -moz-box-shadow: var(--AIR_SHADOW);
+        -webkit-box-shadow: var(--AIR_SHADOW);
+    }
+}
+
+@keyframes WINDOW-SHOW_BG {
+    0% {
+        opacity: 0;
+        visibility: visible;
+    }
+    
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes WINDOW-HIDE {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        visibility: visible;
+        box-shadow: var(--AIR_SHADOW);
+        -moz-box-shadow: var(--AIR_SHADOW);
+        -webkit-box-shadow: var(--AIR_SHADOW);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+        visibility: hidden;
+        -webkit-box-shadow: 0px 4px 20px 3px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 0px 4px 20px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 4px 20px 3px rgba(0, 0, 0, 0.1);
+    }
+}
+
+@keyframes WINDOW-HIDE_BG {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Глобально - Блюр */
+
+@keyframes BLUR-SHOW {
+    0% {
+        opacity: 0;
+        visibility: visible;
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+    50% {
+        opacity: 1;
+        visibility: visible;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+@keyframes BLUR-HIDE {
+    0% {
+        opacity: 1;
+        visibility: visible;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    50% {
+        opacity: 1;
+        visibility: visible;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+}
+
+/* Панель навигации */
+
+@keyframes NAV_PANEL-SHOW {
+    0% {
+        transform: translateY(-101%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+@keyframes NAV_PANEL-HIDE {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(-101%);
+    }
+}
+
+@keyframes NAV_PANEL-DISABLE_BLUR {
+    0% {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    100% {
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+}
+@keyframes NAV_PANEL-ENABLE_BLUR {
+    0% {
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+    100% {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+@keyframes BOTTOM_NAV-SHOW {
+    0% {
+        transform: translateY(101%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+@keyframes BOTTOM_NAV-HIDE {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(101%);
+    }
+}
+
+@keyframes MP_NAV-SHOW {
+    0% {transform: translateY(-200%); opacity: 0.5; visibility: visible;}
+    100% {transform: translateY(0); opacity: 1; visibility: visible;}
+}
+@keyframes MP_NAV-HIDE {
+    0% {transform: translateY(0); opacity: 1; visibility: visible;}
+    100% {transform: translateY(-200%); opacity: 0.5; visibility: visible;}
+}
+
+@keyframes SHOW_NAV_AD {
+    0% {
+        transform: translateY(200%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes HIDE_NAV_AD {
+    0% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(200%);
+        opacity: 0;
+    }
+}
+
+/* Интерфейс - Просмотр изображения */
+
+@keyframes IMAGE_VIEW-SHOW {
+    0% {
+        transform: translateY(150%);
+        opacity: 0;
+        visibility: visible;
+    }
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+@keyframes IMAGE_VIEW-HIDE {
+    0% {
+        transform: translateY(0%);
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        transform: translateY(150%);
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes IMAGE_VIEW-FULLSCREAN {
+    0% {
+        transform: translateY(0%);
+        opacity: 1;
+        visibility: visible;
+        bottom: 60px;
+        max-width: 850px;
+        height: 500px;
+        border-radius: var(--BR_BASE);
+    }
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+        visibility: visible;
+        bottom: 0px;
+        max-width: 100%;
+        height: 100%;
+        border-radius: 0px;
+    }
+}
+@keyframes IMAGE_VIEW-DISABLE_FULLSCREAN {
+    0% {
+        transform: translateY(0%);
+        opacity: 1;
+        visibility: visible;
+        bottom: 0px;
+        max-width: 100%;
+        height: 100%;
+        border-radius: 0px;
+    }
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+        visibility: visible;
+        bottom: 60px;
+        max-width: 850px;
+        height: 500px;
+        border-radius: var(--BR_BASE);
+    }
+}
+
+@keyframes IMAGE_VIEW-DF_BUTTON-SHOW {
+    0% {
+        opacity: 0;
+        visibility: visible;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+@keyframes IMAGE_VIEW-DF_BUTTON-HIDE {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes IMAGE_VIEW-DARK_BLUR {
+    0% {
+        background: rgb(255 255 255 / 50%);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+    100% {
+        background: rgb(0 0 0 / 70%);
+        backdrop-filter: blur(50px);
+        -webkit-backdrop-filter: blur(50px);
+    }
+}
+@keyframes IMAGE_VIEW-WHITE_BLUR {
+    0% {
+        background: rgb(0 0 0 / 70%);
+        backdrop-filter: blur(50px);
+        -webkit-backdrop-filter: blur(50px);
+    }
+    100% {
+        background: rgb(255 255 255 / 50%);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+}
+
+/* ЧатиГ */
+
+@keyframes ChatsHide {
+    0% {width: 50%;}
+    100% {width: 0%;}
+}
+
+@keyframes ChatsShow {
+    0% {width: 0%;}
+    100% {width: 50%;}
+}
+
+@keyframes ChatShow {
+    0% {
+        width: 50%;
+        max-width: 400px;
+        -webkit-box-shadow: 0px 2px 7px 0px rgb(200 200 200 / 50%);
+        -moz-box-shadow: 0px 2px 7px 0px rgb(200 200 200 / 50%);
+        box-shadow: 0px 2px 7px 0px rgb(200 200 200 / 50%);
+    }
+    100% {
+        width: 60%;
+        max-width: 600px;
+        -webkit-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+        -moz-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+        box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+    }
+}
+
+@keyframes ChatHide {
+    0% {
+        width: 60%;
+        max-width: 600px;
+        -webkit-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+        -moz-box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+        box-shadow: 0px 4px 10px -9px rgb(64 64 64 / 70%);
+    }
+    100% {
+        width: 50%;
+        max-width: 400px;
+        -webkit-box-shadow: 0px 2px 7px 0px rgb(200 200 200 / 50%);
+        -moz-box-shadow: 0px 2px 7px 0px rgb(200 200 200 / 50%);
+        box-shadow: 0px 2px 7px 0px rgb(200 200 200 / 50%);
+    }
+}
+
+@keyframes CHAT-MOBILE_SHOW {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+@keyframes CHAT-MOBILE_HIDE {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes CHAT-HIDE_WARNING {
+    0% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        border-radius: var(--BR_BASE);
+    }
+    40% {
+        transform: translate(0) scale(0.9);
+        opacity: 1;
+        border-radius: var(--BR_BASE);
+        box-shadow: 0px 1px 5px -6px rgb(114 114 114 / 50%);
+        -moz-box-shadow: 0px 1px 5px -6px rgb(114 114 114 / 50%);
+        -webkit-box-shadow: 0px 1px 5px -6px rgb(114 114 114 / 50%);
+    }
+    100% {
+        transform: translateY(-100px) scale(0.9);
+        opacity: 0.1;
+        border-radius: var(--BR_BASE);
+        box-shadow: 0px 0px 0px 0px rgb(114 114 114 / 50%);
+        -moz-box-shadow: 0px 0px 0px 0px rgb(114 114 114 / 50%);
+        -webkit-box-shadow: 0px 0px 0px 0px rgb(114 114 114 / 50%);
+    }
+}
+
+@keyframes CHAT-SHOW_WARNING {
+    0% {
+        transform: translateY(-100px) scale(0.9);
+        opacity: 0.1;
+        border-radius: var(--BR_BASE);
+        box-shadow: 0px 0px 0px 0px rgb(114 114 114 / 50%);
+        -moz-box-shadow: 0px 0px 0px 0px rgb(114 114 114 / 50%);
+        -webkit-box-shadow: 0px 0px 0px 0px rgb(114 114 114 / 50%);
+    }
+    40% {
+        transform: translate(0) scale(0.9);
+        opacity: 1;
+        border-radius: var(--BR_BASE);
+        box-shadow: 0px 1px 5px -6px rgb(114 114 114 / 50%);
+        -moz-box-shadow: 0px 1px 5px -6px rgb(114 114 114 / 50%);
+        -webkit-box-shadow: 0px 1px 5px -6px rgb(114 114 114 / 50%);
+    }
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes CHAT-SHOW_ERROR {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes CHAT-HIDE_ERROR {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes SH_DOTS_M {
+    0% {
+        opacity: 0;
+        visibility: visible;
+        filter: blur(1px);
+        -webkit-box-shadow: 0px 0px 10px 0px rgb(17 17 17 / 0%);
+        -moz-box-shadow: 0px 0px 10px 0px rgb(17 17 17 / 0%);
+        box-shadow: 0px 0px 10px 0px rgb(17 17 17 / 0%);
+    }
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+        filter: blur(0px);
+        box-shadow: var(--AIR_SHADOW);
+        -moz-box-shadow: var(--AIR_SHADOW);
+        -webkit-box-shadow: var(--AIR_SHADOW);
+    }
+}
+
+@keyframes HD_DOTS_M {
+    0% {
+        opacity: 1;
+        visibility: visible;
+        filter: blur(1px);
+        box-shadow: var(--AIR_SHADOW);
+        -moz-box-shadow: var(--AIR_SHADOW);
+        -webkit-box-shadow: var(--AIR_SHADOW);
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        filter: blur(0px);
+        -webkit-box-shadow: 0px 0px 10px 0px rgb(17 17 17 / 0%);
+        -moz-box-shadow: 0px 0px 10px 0px rgb(17 17 17 / 0%);
+        box-shadow: 0px 0px 10px 0px rgb(17 17 17 / 0%);
+    }
+}
+
+@keyframes AP-FILE_SETTINGS-ACTIVE {
+    0% {
+        background: var(--BTN_BACKGROUND);
+        box-shadow: 0px 0px 0px 0px rgb(31 30 30 / 0%);
+    }
+    100% {
+        background: var(--AIR_COLOR);
+        box-shadow: 0px 0px 10px -1px rgb(31 30 30 / 30%);
+    }
+}
+@keyframes AP-FILE_SETTINGS-NOTACTIVE {
+    0% {
+        background: var(--AIR_COLOR);
+        box-shadow: 0px 0px 10px -1px rgb(31 30 30 / 30%);
+    }
+    100% {
+        background: var(--BTN_BACKGROUND);
+        box-shadow: 0px 0px 0px 0px rgb(31 30 30 / 0%);
+    }
+}
+
+/* Профиль */
+
+@keyframes PROFILE_ICON_INFO {
+    0% {
+        background: rgb(255 255 255 / 0%);
+        border-radius: 0px;
+        padding: 0px;
+        width: 19px;
+        height: 19px;
+        -webkit-box-shadow: 0px 0px 0px 0px rgb(17 17 17 / 0%);
+        -moz-box-shadow: 0px 0px 0px 0px rgb(17 17 17 / 0%);
+        box-shadow: 0px 0px 0px 0px rgb(17 17 17 / 0%);
+    }
+
+    100% {
+        background: var(--AIR_COLOR);
+        border-radius: var(--BR_BASE);
+        padding: 3px;
+        width: 25px;
+        height: 25px;
+        box-shadow: var(--AIR_SHADOW);
+        -moz-box-shadow: var(--AIR_SHADOW);
+        -webkit-box-shadow: var(--AIR_SHADOW);
+    }
+}
+
+@keyframes HD_PROFILE_ICON_INFO {
+    0% {
+        background: var(--AIR_COLOR);
+        border-radius: var(--BR_BASE);
+        padding: 3px;
+        width: 25px;
+        height: 25px;
+        box-shadow: var(--AIR_SHADOW);
+        -moz-box-shadow: var(--AIR_SHADOW);
+        -webkit-box-shadow: var(--AIR_SHADOW);
+    }
+
+    100% {
+        background: rgb(255 255 255 / 0%);
+        border-radius: 0px;
+        padding: 0px;
+        width: 19px;
+        height: 19px;
+        -webkit-box-shadow: 0px 0px 0px 0px rgb(17 17 17 / 0%);
+        -moz-box-shadow: 0px 0px 0px 0px rgb(17 17 17 / 0%);
+        box-shadow: 0px 0px 0px 0px rgb(17 17 17 / 0%);
+    }
+}
+
+@keyframes LOAD_PAGE {
+    0%, 25% {
+      opacity: 0;
+    }
+
+    50%, 75% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+}
+
+@keyframes PAGE_LOADED {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Настройки */
+
+@keyframes SETTINGS-SHOW_INPUT {
+    0% {
+        transform: translate(0) scale(0.5);
+        opacity: 0.1;
+        top: -40px;
+        box-shadow: 0px 0px 0px 0px rgb(114 114 114 / 50%);
+        -moz-box-shadow: 0px 0px 0px 0px rgb(114 114 114 / 50%);
+        -webkit-box-shadow: 0px 0px 0px 0px rgb(114 114 114 / 50%);
+    }
+    40% {
+        transform: translate(0) scale(0.5);
+        opacity: 1;
+        box-shadow: 0px 1px 5px -6px rgb(114 114 114 / 50%);
+        -moz-box-shadow: 0px 1px 5px -6px rgb(114 114 114 / 50%);
+        -webkit-box-shadow: 0px 1px 5px -6px rgb(114 114 114 / 50%);
+    }
+    100% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        top: 5px;
+        box-shadow: var(--AIR_SHADOW);
+        -moz-box-shadow: var(--AIR_SHADOW);
+        -webkit-box-shadow: var(--AIR_SHADOW);
+    }
+}
+
+@keyframes SETTINGS-HIDE_INPUT {
+    0% {
+        transform: translate(0) scale(1);
+        opacity: 1;
+        top: 5px;
+        box-shadow: var(--AIR_SHADOW);
+        -moz-box-shadow: var(--AIR_SHADOW);
+        -webkit-box-shadow: var(--AIR_SHADOW);
+    }
+    40% {
+        transform: translate(0) scale(0.5);
+        opacity: 1;
+        box-shadow: 0px 1px 5px -6px rgb(114 114 114 / 50%);
+        -moz-box-shadow: 0px 1px 5px -6px rgb(114 114 114 / 50%);
+        -webkit-box-shadow: 0px 1px 5px -6px rgb(114 114 114 / 50%);
+    }
+    100% {
+        transform: translate(0) scale(0.5);
+        opacity: 0.1;
+        top: -40px;
+        box-shadow: 0px 0px 0px 0px rgb(114 114 114 / 50%);
+        -moz-box-shadow: 0px 0px 0px 0px rgb(114 114 114 / 50%);
+        -webkit-box-shadow: 0px 0px 0px 0px rgb(114 114 114 / 50%);
+    }
+}
+
+/* Пост */
+
+/* Пост - Поделиться */
+
+@keyframes POST-SHOW_SHARE {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+@keyframes POST-HIDE_SHARE {
+    0% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}
+
+/* Пост - Удаление */
+
+@keyframes POST-DELETE_VARIANT_1 {
+    0% {
+        filter: blur(0px);
+        opacity: 1;
+        transform: scale(1)translateY(0px);
+    }
+    50% {
+        filter: blur(1px);
+        opacity: 1;
+        transform: scale(0.8)translateY(0px);
+    }
+    90% {
+        filter: blur(1px);
+        opacity: 1;
+        transform: scale(0.8)translateY(160px);
+    }
+    95% {
+        transform: scale(0.8)translateY(160px);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8)translateY(160px);
+    }
+}
+
+/* Пост - Показать изображение */
+
+@keyframes POST-CI_HIDE {
+    0% {
+        filter: blur(0px);
+        opacity: 1;
+    }
+    50% {
+        filter: blur(10px);
+        opacity: 0.6;
+    }
+    100% {
+        filter: blur(10px);
+        opacity: 0;
+    }
+}
+@keyframes POST-SHOW_IMAGE {
+    0% {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        opacity: 1;
+        visibility: visible;
+    }
+    50% {
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+        opacity: 0.6;
+        visibility: visible;
+    }
+    100% {
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Подписка Gold */
+
+@keyframes INFO_SUB-SHOW {
+    0% {
+        transform: translateY(570px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes INFO_SUB_VIDEO-SHOW {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes INFO_SUB-HIDE {
+    0% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(570px);
+        opacity: 0;
+    }
+}
+@keyframes INFO_SUB_VIDEO-HIDE {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes TEXT_PRELOAD-ANIM {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
